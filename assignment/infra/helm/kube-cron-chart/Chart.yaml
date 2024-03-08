@@ -1,0 +1,6 @@
+apiVersion: v2
+name: kube-cron-chart
+description: Chart for deploying K8 cronjob that scrapes and stores node metrics
+type: application
+version: 1.0.0
+appVersion: 1.0.0

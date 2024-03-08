@@ -1,0 +1,18 @@
+#his pod is can be used to inspect the persistant volume claim
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pvc-inspector
+spec:
+  containers:
+    - image: busybox
+      name: pvc-inspector
+      command: ["tail"]
+      args: ["-f", "/dev/null"]
+      volumeMounts:
+        - mountPath: /data
+          name: pvc-mount
+  volumes:
+    - name: pvc-mount
+      persistentVolumeClaim:
+        claimName: {{ .Values.pvc }}

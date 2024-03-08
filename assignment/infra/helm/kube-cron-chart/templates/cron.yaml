@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: node-metrics-collector
+spec:
+  schedule: {{ quote .Values.schedule }}
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: metrics-collector
+              image: {{ .Values.image }}
+              imagePullPolicy: IfNotPresent
+              volumeMounts:
+                - name: pvc-mount
+                  mountPath: /data
+          restartPolicy: OnFailure
+          volumes:
+            - name: pvc-mount
+              persistentVolumeClaim:
+                claimName: {{ .Values.pvc }}

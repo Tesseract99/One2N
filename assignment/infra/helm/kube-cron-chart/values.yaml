@@ -1,0 +1,14 @@
+#image to be used for the cron job
+image: tesseract99/kube-cron:latest
+
+#name of the persistant volume claim
+pvc: node-metrics-pvc
+
+#cron job schedule: below defalt is 1m
+schedule: "* * * * *"
+
+#namespace where the node exporter daemonset and the service are created
+namespace: monitoring
+
+#PORT where the node exporter can be reached.
+port: 9100
