@@ -18,8 +18,8 @@ cd $helm_path
 
 
 # tar_pattern="${chart_name}"*.tgz
-helm_tar=`ls "${chart_name}"*".tgz"`
-if [ -f "${helm_tar}" ]; then
+
+if [ -f "${chart_name}"*".tgz" ]; then
   echo -e "Tar exists, taking Backup \n"
   mkdir -p "${tar_backup}"
   mv "${chart_name}"*".tgz" "${tar_backup}"
@@ -31,8 +31,8 @@ helm package ${chart_name}
 
 
 
-
-if [ $helm_tar == "null" ]; then
+helm_tar=`ls "${chart_name}"*".tgz"`
+if [ "$helm_tar" == "null" ]; then
     echo -e "Helm tar not found. Exiting. \n"
     exit
 else
